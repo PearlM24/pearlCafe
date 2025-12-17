@@ -5,8 +5,8 @@ import './globals.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'AI Assistant - RAG Chatbot',
-  description: 'AI-powered chatbot with RAG capabilities powered by Flowise',
+  title: 'Pearl Cafe - Autumn Coffee Experience',
+  description: 'Discover the top coffee flavors of all time at Pearl Cafe. Experience vanilla, caramel, and hazelnut in our cozy autumn-themed coffee shop.',
 }
 
 export default function RootLayout({

@@ -1,52 +1,277 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+:root {
+  /* Autumn & Girly Color Palette */
+  --autumn-cream: #FFF8F0;
+  --autumn-peach: #FFE5D9;
+  --autumn-coral: #FFB4A2;
+  --autumn-rose: #E8A87C;
+  --autumn-terracotta: #D77A61;
+  --autumn-burgundy: #B85C57;
+  --autumn-gold: #F4A460;
+  --autumn-rust: #C97D60;
+  --autumn-brown: #8B6F47;
+  --autumn-plum: #9B6F91;
+  --autumn-dusty-pink: #E8B4B8;
+  --autumn-lavender: #D4A5C7;
+  
+  /* Text Colors */
+  --text-primary: #5C4033;
+  --text-secondary: #8B6F47;
+  --text-light: #B85C57;
+  
+  /* Background */
+  --bg-primary: #FFF8F0;
+  --bg-secondary: #FFE5D9;
+  --bg-card: #FFFFFF;
+  
+  /* Shadows */
+  --shadow-soft: 0 4px 20px rgba(184, 92, 87, 0.15);
+  --shadow-medium: 0 8px 30px rgba(184, 92, 87, 0.2);
+  --shadow-strong: 0 12px 40px rgba(184, 92, 87, 0.25);
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+  background: linear-gradient(135deg, var(--autumn-cream) 0%, var(--autumn-peach) 50%, var(--autumn-cream) 100%);
+  background-attachment: fixed;
+  color: var(--text-primary);
+  min-height: 100vh;
+  line-height: 1.6;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
-}
-
-/* Custom scrollbar */
+/* Scrollbar Styling */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: var(--autumn-peach);
+  border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #888;
-  border-radius: 4px;
+  background: linear-gradient(180deg, var(--autumn-rose) 0%, var(--autumn-terracotta) 100%);
+  border-radius: 10px;
+  border: 2px solid var(--autumn-peach);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  background: linear-gradient(180deg, var(--autumn-terracotta) 0%, var(--autumn-burgundy) 100%);
 }
 
+/* Utility Classes */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 25px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--autumn-rose) 0%, var(--autumn-terracotta) 100%);
+  color: white;
+  box-shadow: var(--shadow-soft);
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, var(--autumn-terracotta) 0%, var(--autumn-burgundy) 100%);
+  box-shadow: var(--shadow-medium);
+  transform: translateY(-2px);
+}
+
+.btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.card {
+  background: var(--bg-card);
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: var(--shadow-soft);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: var(--shadow-medium);
+  transform: translateY(-4px);
+}
+
+.input {
+  width: 100%;
+  padding: 14px 20px;
+  border: 2px solid var(--autumn-peach);
+  border-radius: 25px;
+  font-size: 16px;
+  background: var(--bg-card);
+  color: var(--text-primary);
+  transition: all 0.3s ease;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--autumn-rose);
+  box-shadow: 0 0 0 4px rgba(232, 168, 124, 0.1);
+}
+
+.input::placeholder {
+  color: var(--text-light);
+  opacity: 0.6;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-primary);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: 3rem;
+  background: linear-gradient(135deg, var(--autumn-terracotta) 0%, var(--autumn-burgundy) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+h2 {
+  font-size: 2rem;
+  color: var(--autumn-burgundy);
+}
+
+h3 {
+  font-size: 1.5rem;
+  color: var(--autumn-terracotta);
+}
+
+/* Coffee Flavor Cards */
+.coffee-flavor-card {
+  background: linear-gradient(135deg, var(--bg-card) 0%, var(--autumn-peach) 100%);
+  border-radius: 25px;
+  padding: 30px;
+  box-shadow: var(--shadow-soft);
+  transition: all 0.4s ease;
+  border: 2px solid transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+.coffee-flavor-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--autumn-rose) 0%, var(--autumn-terracotta) 50%, var(--autumn-burgundy) 100%);
+}
+
+.coffee-flavor-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: var(--shadow-strong);
+  border-color: var(--autumn-rose);
+}
+
+.coffee-flavor-image {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 15px;
+  margin-bottom: 20px;
+  box-shadow: var(--shadow-soft);
+}
+
+.coffee-flavor-title {
+  font-size: 1.75rem;
+  color: var(--autumn-burgundy);
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.coffee-flavor-description {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+/* Loading Animation */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spinner {
+  animation: spin 1s linear infinite;
+}
+
+/* Message Bubbles */
+.message-bubble {
+  border-radius: 20px;
+  padding: 14px 18px;
+  max-width: 80%;
+  word-wrap: break-word;
+  position: relative;
+}
+
+.message-user {
+  background: linear-gradient(135deg, var(--autumn-rose) 0%, var(--autumn-terracotta) 100%);
+  color: white;
+  margin-left: auto;
+  border-bottom-right-radius: 4px;
+}
+
+.message-assistant {
+  background: linear-gradient(135deg, var(--autumn-peach) 0%, var(--autumn-cream) 100%);
+  color: var(--text-primary);
+  border: 1px solid var(--autumn-peach);
+  border-bottom-left-radius: 4px;
+}
+
+/* Responsive */
+@media (min-width: 640px) {
+  .send-text {
+    display: inline !important;
+  }
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+  }
+  
+  .coffee-flavor-card {
+    padding: 20px;
+  }
+  
+  .coffee-flavor-image {
+    height: 200px;
+  }
+}

@@ -92,16 +92,55 @@ export default function ChatInterface() {
   };
 
   return (
-    <div className="flex flex-col h-[600px] md:h-[700px] bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700">
+    <div style={{
+      display: 'flex',
+      flexDirection: 'column',
+      height: '600px',
+      background: 'var(--bg-card)',
+      borderRadius: '25px',
+      boxShadow: 'var(--shadow-medium)',
+      border: '2px solid var(--autumn-peach)',
+      overflow: 'hidden'
+    }}>
       {/* Messages Area */}
-      <div className="flex-1 overflow-y-auto p-4 space-y-4">
+      <div style={{
+        flex: 1,
+        overflowY: 'auto',
+        padding: '24px',
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '20px',
+        background: 'linear-gradient(180deg, var(--autumn-cream) 0%, var(--bg-card) 100%)'
+      }}>
         {messages.length === 0 && (
-          <div className="flex flex-col items-center justify-center h-full text-center text-gray-500 dark:text-gray-400">
-            <Bot className="w-16 h-16 mb-4 text-primary-500" />
-            <h2 className="text-xl font-semibold mb-2">Welcome to AI Assistant</h2>
-            <p className="text-sm max-w-md">
-              Ask me anything! I'm powered by Flowise with RAG capabilities to provide
-              accurate and contextual responses.
+          <div style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            height: '100%',
+            textAlign: 'center',
+            color: 'var(--text-secondary)'
+          }}>
+            <div style={{
+              width: '80px',
+              height: '80px',
+              borderRadius: '50%',
+              background: 'linear-gradient(135deg, var(--autumn-rose) 0%, var(--autumn-terracotta) 100%)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              marginBottom: '20px',
+              boxShadow: 'var(--shadow-soft)'
+            }}>
+              <Bot size={40} color="white" />
+            </div>
+            <h2 style={{ fontSize: '1.5rem', marginBottom: '12px', color: 'var(--autumn-burgundy)' }}>
+              Welcome to Pearl Cafe! ☕
+            </h2>
+            <p style={{ fontSize: '1rem', maxWidth: '400px', lineHeight: '1.6' }}>
+              Ask me anything about coffee, our flavors, or get personalized recommendations!
+              I'm here to help you find your perfect cup.
             </p>
           </div>
         )}
@@ -109,58 +148,100 @@ export default function ChatInterface() {
         {messages.map((message) => (
           <div
             key={message.id}
-            className={`flex gap-3 ${
-              message.role === 'user' ? 'justify-end' : 'justify-start'
-            }`}
+            style={{
+              display: 'flex',
+              gap: '12px',
+              justifyContent: message.role === 'user' ? 'flex-end' : 'flex-start',
+              alignItems: 'flex-start'
+            }}
           >
             {message.role === 'assistant' && (
-              <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary-500 flex items-center justify-center">
-                <Bot className="w-5 h-5 text-white" />
+              <div style={{
+                flexShrink: 0,
+                width: '40px',
+                height: '40px',
+                borderRadius: '50%',
+                background: 'linear-gradient(135deg, var(--autumn-rose) 0%, var(--autumn-terracotta) 100%)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                boxShadow: 'var(--shadow-soft)'
+              }}>
+                <Bot size={20} color="white" />
               </div>
             )}
 
-            <div
-              className={`max-w-[80%] rounded-lg px-4 py-2 ${
-                message.role === 'user'
-                  ? 'bg-primary-500 text-white'
-                  : 'bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white'
-              }`}
-            >
-              <p className="whitespace-pre-wrap break-words">{message.content}</p>
+            <div className={`message-bubble ${message.role === 'user' ? 'message-user' : 'message-assistant'}`}>
+              <p style={{ whiteSpace: 'pre-wrap', wordBreak: 'break-word', margin: 0 }}>
+                {message.content}
+              </p>
               
               {message.sources && message.sources.length > 0 && (
-                <div className="mt-2 pt-2 border-t border-gray-300 dark:border-gray-600">
-                  <p className="text-xs font-semibold mb-1">Sources:</p>
-                  <div className="space-y-1">
+                <div style={{
+                  marginTop: '12px',
+                  paddingTop: '12px',
+                  borderTop: '1px solid rgba(184, 92, 87, 0.2)'
+                }}>
+                  <p style={{ fontSize: '0.75rem', fontWeight: '600', marginBottom: '8px', color: 'var(--text-light)' }}>
+                    Sources:
+                  </p>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
                     {message.sources.slice(0, 3).map((source, idx) => (
-                      <div key={idx} className="text-xs opacity-75">
-                        <p className="truncate">{source.pageContent.substring(0, 100)}...</p>
+                      <div key={idx} style={{ fontSize: '0.75rem', opacity: 0.8 }}>
+                        <p style={{ 
+                          overflow: 'hidden',
+                          textOverflow: 'ellipsis',
+                          whiteSpace: 'nowrap',
+                          maxWidth: '100%'
+                        }}>
+                          {source.pageContent.substring(0, 100)}...
+                        </p>
                       </div>
                     ))}
                   </div>
                 </div>
               )}
 
-              <p className="text-xs opacity-70 mt-1">
+              <p style={{ fontSize: '0.75rem', opacity: 0.7, marginTop: '8px', marginBottom: 0 }}>
                 {message.timestamp.toLocaleTimeString()}
               </p>
             </div>
 
             {message.role === 'user' && (
-              <div className="flex-shrink-0 w-8 h-8 rounded-full bg-gray-300 dark:bg-gray-600 flex items-center justify-center">
-                <User className="w-5 h-5 text-gray-700 dark:text-gray-300" />
+              <div style={{
+                flexShrink: 0,
+                width: '40px',
+                height: '40px',
+                borderRadius: '50%',
+                background: 'linear-gradient(135deg, var(--autumn-dusty-pink) 0%, var(--autumn-lavender) 100%)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                boxShadow: 'var(--shadow-soft)'
+              }}>
+                <User size={20} color="white" />
               </div>
             )}
           </div>
         ))}
 
         {isLoading && (
-          <div className="flex gap-3 justify-start">
-            <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary-500 flex items-center justify-center">
-              <Bot className="w-5 h-5 text-white" />
+          <div style={{ display: 'flex', gap: '12px', justifyContent: 'flex-start', alignItems: 'flex-start' }}>
+            <div style={{
+              flexShrink: 0,
+              width: '40px',
+              height: '40px',
+              borderRadius: '50%',
+              background: 'linear-gradient(135deg, var(--autumn-rose) 0%, var(--autumn-terracotta) 100%)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              boxShadow: 'var(--shadow-soft)'
+            }}>
+              <Bot size={20} color="white" />
             </div>
-            <div className="bg-gray-100 dark:bg-gray-700 rounded-lg px-4 py-2">
-              <Loader2 className="w-5 h-5 animate-spin text-primary-500" />
+            <div className="message-bubble message-assistant">
+              <Loader2 size={20} className="spinner" style={{ color: 'var(--autumn-rose)' }} />
             </div>
           </div>
         )}
@@ -170,35 +251,46 @@ export default function ChatInterface() {
 
       {/* Error Message */}
       {error && (
-        <div className="px-4 py-2 bg-red-100 dark:bg-red-900/30 border-t border-red-300 dark:border-red-700">
-          <p className="text-sm text-red-700 dark:text-red-400">{error}</p>
+        <div style={{
+          padding: '16px 24px',
+          background: 'linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%)',
+          borderTop: '2px solid #e57373',
+          color: '#c62828'
+        }}>
+          <p style={{ fontSize: '0.9rem', margin: 0 }}>{error}</p>
         </div>
       )}
 
       {/* Input Area */}
-      <div className="border-t border-gray-200 dark:border-gray-700 p-4">
-        <div className="flex gap-2">
+      <div style={{
+        borderTop: '2px solid var(--autumn-peach)',
+        padding: '20px 24px',
+        background: 'var(--bg-card)'
+      }}>
+        <div style={{ display: 'flex', gap: '12px' }}>
           <input
             ref={inputRef}
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyPress={handleKeyPress}
-            placeholder="Type your message..."
+            placeholder="Ask about coffee, flavors, or get recommendations..."
             disabled={isLoading}
-            className="flex-1 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 dark:bg-gray-700 dark:text-white disabled:opacity-50"
+            className="input"
+            style={{ flex: 1 }}
           />
           <button
             onClick={handleSend}
             disabled={isLoading || !input.trim()}
-            className="px-6 py-2 bg-primary-500 text-white rounded-lg hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-500 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 transition-colors"
+            className="btn btn-primary"
+            style={{ whiteSpace: 'nowrap' }}
           >
             {isLoading ? (
-              <Loader2 className="w-5 h-5 animate-spin" />
+              <Loader2 size={20} className="spinner" />
             ) : (
               <>
-                <Send className="w-5 h-5" />
-                <span className="hidden sm:inline">Send</span>
+                <Send size={20} />
+                <span style={{ display: 'none' }} className="send-text">Send</span>
               </>
             )}
           </button>
@@ -207,4 +299,3 @@ export default function ChatInterface() {
     </div>
   );
 }
-
