@@ -135,8 +135,8 @@ export default function ChatInterface() {
             }}>
               <Bot size={40} color="white" />
             </div>
-            <h2 style={{ fontSize: '1.5rem', marginBottom: '12px', color: 'var(--autumn-burgundy)' }}>
-              Welcome to Pearl Cafe! ☕
+            <h2 style={{ fontSize: '1.5rem', marginBottom: '12px', color: 'var(--autumn-burgundy)', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
+              Welcome to Pearl Cafe! <i className="fas fa-coffee" style={{ color: 'var(--autumn-terracotta)' }}></i>
             </h2>
             <p style={{ fontSize: '1rem', maxWidth: '400px', lineHeight: '1.6' }}>
               Ask me anything about coffee, our flavors, or get personalized recommendations!

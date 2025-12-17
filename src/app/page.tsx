@@ -29,8 +29,9 @@ export default function Home() {
       <div className="container">
         {/* Header Section */}
         <div style={{ textAlign: 'center', marginBottom: '60px' }}>
-          <h1 style={{ marginBottom: '16px', fontSize: '3.5rem' }}>
-            ☕ Pearl Cafe
+          <h1 style={{ marginBottom: '16px', fontSize: '3.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px' }}>
+            <i className="fas fa-coffee" style={{ color: 'var(--autumn-terracotta)' }}></i>
+            Pearl Cafe
           </h1>
           <p style={{ fontSize: '1.25rem', color: 'var(--text-secondary)', maxWidth: '600px', margin: '0 auto' }}>
             Your cozy autumn escape for the perfect cup of coffee
@@ -39,8 +40,10 @@ export default function Home() {
 
         {/* Top 3 Coffee Flavors Section */}
         <section style={{ marginBottom: '60px' }}>
-          <h2 style={{ textAlign: 'center', marginBottom: '40px', fontSize: '2.5rem' }}>
-            ✨ Top 3 Coffee Flavors of All Time ✨
+          <h2 style={{ textAlign: 'center', marginBottom: '40px', fontSize: '2.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px' }}>
+            <i className="fas fa-star" style={{ color: 'var(--autumn-gold)', fontSize: '1.8rem' }}></i>
+            Top 3 Coffee Flavors of All Time
+            <i className="fas fa-star" style={{ color: 'var(--autumn-gold)', fontSize: '1.8rem' }}></i>
           </h2>
           <div style={{ 
             display: 'grid', 
@@ -66,8 +69,9 @@ export default function Home() {
         {/* Chat Interface Section */}
         <section>
           <div style={{ textAlign: 'center', marginBottom: '30px' }}>
-            <h2 style={{ fontSize: '2rem', marginBottom: '12px' }}>
-              💬 Chat with Our AI Assistant
+            <h2 style={{ fontSize: '2rem', marginBottom: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px' }}>
+              <i className="fas fa-comments" style={{ color: 'var(--autumn-rose)' }}></i>
+              Chat with Our AI Assistant
             </h2>
             <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem' }}>
               Ask us anything about coffee, flavors, or get recommendations!
